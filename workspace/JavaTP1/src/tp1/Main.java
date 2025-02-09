@@ -37,6 +37,15 @@ public class Main {
 		public T apply(Function<T, T> f, T x) {
 			return f.apply(f.apply(x)); 
 		}
+		
+	}
+	
+	public static <T1, T2> T2 apply(Function<T1, T2> f, T1 x) {
+		return f.apply(x); 
+	}
+	
+	public static <F, G, X> G andThen(Function<X, F> f, Function<F, G> g, X x) {
+		return g.apply(f.apply(x)); 
 	}
 	
 	public static void main(String[] args) {
