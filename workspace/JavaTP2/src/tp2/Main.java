@@ -1,5 +1,6 @@
 package tp2;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Main {
@@ -71,7 +72,7 @@ public class Main {
 	}
 	
 	// Classe représentant les nombres naturels
-	class MyNat implements HasPlus<MyNat> {
+	static class MyNat implements HasPlus<MyNat> {
 	    private final MyNat pred; // Le prédécesseur (null si c'est zéro)
 	    private final boolean isZero; // Indique si c'est zéro
 
@@ -120,7 +121,66 @@ public class Main {
 	        return result;
 	    }
 	}
+	
+	interface IsList<E, L extends IsList<E,L>> {
+		L add(E x); // ajout en tête
+		<T> T cases(T z, BiFunction<E,L,T> f);
+		default boolean isEmpty() {
+			return cases(true, (hd, tl) -> false); 
+		}
+	} 
+	
+	interface HasLength<E, L extends HasLength<E, L>> extends IsList<E, L> {
+	    default int length() {
+	        return cases(0, (hd, tl) -> 1 + tl.length()); 
+	    }
+	}
+	    
+	interface HasAppend<E, L extends HasAppend<E, L>> extends IsList<E, L> {
+		default L append(list<Object> l2) {
+			return (L) cases(l2, (hd, tl) -> tl.append(l2).add(hd)); 
+		}
+	}
 
+	static class list<E> implements HasLength<E, list<E>>, HasAppend<E, list<E>> {
+	    
+	    public static <E> list<E> empty() {
+	        return new Empty<>();
+	    }
+	    
+	    @Override
+	    public list<E> add(E x) {
+	        return new NotEmpty<>(x, this);
+	    }
+	    
+	    @Override
+	    public <T> T cases(T z, BiFunction<E, list<E>, T> f) {
+	        return z;
+	    }
+	    
+	    private static class Empty<E> extends list<E> {
+	        @Override
+	        public <T> T cases(T z, BiFunction<E, list<E>, T> f) {
+	            return z;
+	        }
+	    }
+	    
+	    private static class NotEmpty<E> extends list<E> {
+	        private final E hd;
+	        private final list<E> tl;
+
+	        NotEmpty(E hd, list<E> tl) {
+	            this.hd = hd;
+	            this.tl = tl;
+	        }
+
+	        @Override
+	        public <T> T cases(T z, BiFunction<E, list<E>, T> f) {
+	            return f.apply(hd, tl);
+	        }
+	    }
+	    
+	}
 	
 	
 	public static void main(String[] args) {
@@ -153,10 +213,20 @@ public class Main {
 		MyNat n1 = MyNat.of(2);
         MyNat n2 = MyNat.of(3);
         System.out.println("Somme: " + n1.add(n2)); // Devrait afficher 5
+        
+        System.out.println("------EXO4------");
+        list<String> l = list.empty();
+        l = l.add("a").add("b").add("c");
+        System.out.println("lng: " + l.length()); // affiche 3
+        
+        list<Object> l2 = list.empty().add("x").add("y");
+        list<String> l3 = l.append(l2);
+        System.out.println("lng après append: " + l3.length()); // affiche 5
 
 	}
 	
 
 	
+
 }
 
