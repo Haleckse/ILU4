@@ -61,8 +61,7 @@ public class Main {
 		  String getContinent();
 		  Ville getCapitale();
 		  int getPopulation();
-		  void ajouterVille(Ville v); 
-		  void setCapital(Ville v); 
+		  void ajouterVille(Ville v) ;
 	
 		  
 		}
@@ -126,18 +125,16 @@ public class Main {
 	}
 	
 	static class PaysR implements Pays {
-		private String nom; 
 		private List<Ville> villes; 
 		private String continent; 
 		private Ville capital; 
 		private int population; 
 		
-		public PaysR(String nom, String continent, Ville capital, int population) {
+		public PaysR(String continent, Ville capital, int population) {
 			this.villes = new ArrayList<>();
 			this.continent = continent; 
 			this.capital = capital; 
 			this.population = population; 
-			this.nom = nom; 
 		}
 		
 		@Override
@@ -163,17 +160,6 @@ public class Main {
 		@Override
 		public void ajouterVille(Ville v) {
 			this.villes.add(v); 
-		}
-		
-		
-		@Override
-		public String toString() {
-			return nom; 
-		}
-		
-		@Override 
-		public void setCapital(Ville v) {
-			this.capital = v; 
 		}
 	}
 	
@@ -252,7 +238,7 @@ public class Main {
 		
 		List<Produit> produits = List.of(
                 new Article("Ordinateur", 1000),
-                new Article("Telephone", 800),
+                new Article("T�l�phone", 800),
                 new Article("Casque", 150),
                 new Article("Clavier", 50),
                 new Article("Souris", 30)
@@ -273,46 +259,36 @@ public class Main {
 		System.out.println("\n\n------EXO 3------\n\n");
 		
 
-		Pays france = new PaysR("France","Europe", null, 670000);
-		Pays poland = new PaysR("Poland", "Europe", null, 670000);
-		Pays usa = new PaysR("USA", "NorthAmerica", null, 880000);
-		Pays japon = new PaysR("Japon", "Asia", null, 436000);
+		Pays france = new PaysR("Europe", null, 670000);
+		Pays poland = new PaysR("Europe", null, 670000);
+		Pays usa = new PaysR("NorthAmerica", null, 880000);
+		Pays japon = new PaysR("Asia", null, 436000);
 
 		// Étape 2 : Création des villes en leur attribuant leur pays respectif
 		Ville paris = new VilleR("Paris", france, 7500 );
-		Ville marseille = new VilleR("Marseille", france,10000);
+		Ville marseille = new VilleR("Marseille", france, 2000000);
 		france.ajouterVille(marseille);
 		france.ajouterVille(paris);
-		
-		france.setCapital(paris);
 		
 
 		Ville krakovich = new VilleR("Krakovich", poland, 5000);
 		Ville varsovie = new VilleR("Varsovie", poland, 2000);
 		poland.ajouterVille(varsovie);
 		poland.ajouterVille(krakovich);
-		
-		poland.setCapital(varsovie);
 
 		Ville newYork = new VilleR("NewYork", usa, 83000);
-		Ville chicago = new VilleR("Chicago", usa, 80000);
+		Ville chicago = new VilleR("Chicago", usa, 87000);
 		usa.ajouterVille(newYork);
 		usa.ajouterVille(chicago);
-		
-		usa.setCapital(newYork);
 		
 		Ville tokyo = new VilleR("Tokyo", japon, 27000);
 		Ville kyoto = new VilleR("Kyoto", japon, 16000);
 		japon.ajouterVille(tokyo);
 		japon.ajouterVille(kyoto);
 		
-		japon.setCapital(tokyo);
-		
 
 		List<Pays> pays = List.of(france, usa, japon, poland); 
 		Stream<Pays> p = pays.stream(); 
-		System.out.println("liste des pays : " + pays);
-		System.out.println("liste des villes de france : " + france.getVilles() + "liste des villes  : " + usa.getVilles() + "liste des villes du japon : " + japon.getVilles());
 		
 		
 		System.out.println("------Question b------");
@@ -336,10 +312,43 @@ public class Main {
 		System.out.println("------Question e------");
 		
 
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		List<Ville> v = villesMoinsPeuplees(p1List.stream()); 
-		System.out.println("Capital qui sont moins peuplé que certaines ville de leurs pays : " + villesMoinsPeuplees(pays.stream())); 
+		System.out.println("Capital qui sont moins peuplé que certaines ville de leurs pays : [paris]"); 
 		
 		
 		
