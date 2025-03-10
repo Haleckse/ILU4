@@ -52,7 +52,7 @@ public class Frame extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(null), "Test des actions utilisateur"));
         jPanel1.setToolTipText("");
         jPanel1.setName(""); // NOI18N
 
@@ -60,6 +60,11 @@ public class Frame extends javax.swing.JFrame {
         Case1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case1ActionPerformed(evt);
+            }
+        });
+        Case1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                Case1PropertyChange(evt);
             }
         });
 
@@ -135,7 +140,7 @@ public class Frame extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(Case2)
                     .addComponent(Case1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -166,6 +171,7 @@ public class Frame extends javax.swing.JFrame {
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
+        jTextArea2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(null), "Observation des évenements "));
         jScrollPane3.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -181,7 +187,7 @@ public class Frame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -230,11 +236,13 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_Bouton1ActionPerformed
 
     private void Case1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case1ActionPerformed
-        jTextArea2.append("Vous venez de cocher la case numéro 1\n");                        // TODO add your handling code here:
+        if(Case1.isSelected()) jTextArea2.append("Vous venez de cocher la case numéro 1\n");       
+        else jTextArea2.append("Vous venez de décocher la case numéro 1\n");  // TODO add your handling code here:
     }//GEN-LAST:event_Case1ActionPerformed
 
     private void Case2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case2ActionPerformed
-        jTextArea2.append("Vous venez de cocher la case numéro 2\n"); 
+        if(Case2.isSelected()) jTextArea2.append("Vous venez de cocher la case numéro 2\n");       
+        else jTextArea2.append("Vous venez de décocher la case numéro 2\n");  // TODO add your handling code here:
     }//GEN-LAST:event_Case2ActionPerformed
 
     private void jTextArea1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseEntered
@@ -242,7 +250,7 @@ public class Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextArea1MouseEntered
 
     private void Bouton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bouton2ActionPerformed
-        jTextArea2.append("Vous venez de cocher la case numéro 2\n");         // TODO add your handling code here:
+        jTextArea2.append("Vous venez de cliquer sur le Bouton 2\n");         // TODO add your handling code here:
     }//GEN-LAST:event_Bouton2ActionPerformed
 
     private void List1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_List1ValueChanged
@@ -257,6 +265,10 @@ public class Frame extends javax.swing.JFrame {
         jTextArea2.append("Vous venez de taper : " + evt.getKeyChar() + " dans la zone de saisie de texte\n"); 
         
     }//GEN-LAST:event_jTextArea1KeyTyped
+
+    private void Case1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_Case1PropertyChange
+       
+    }//GEN-LAST:event_Case1PropertyChange
 
     /**
      * @param args the command line arguments
