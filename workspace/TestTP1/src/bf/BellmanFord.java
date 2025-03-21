@@ -55,31 +55,5 @@ public class BellmanFord {
  	     
  	}
 
-// public static void main(String[] args) {
-////     int V = 5;
-////     int[][] edges = new int[][] {
-////         {1, 3, 2},
-////         {4, 3, -1},
-////         {2, 4, 1},
-////         {1, 2, 1},
-////         {0, 1, 5}
-////     };
-////
-////     int src = 0;
-////     int[] ans = bellmanFord(V, edges, src);
-////     for (int dist : ans) 
-////         System.out.print(dist + " ");
-////     
-//////     BellmanFord bf = new BellmanFord(); 
-//////     bf.calculcateDistance(new int[][] { 
-//////     {0, 4, 8},
-//////     {0, 5, 10},
-//////     {1, 5, -1},
-//////     {2, 1, -2},
-//////     {3, 2, -1},
-//////     {3, 5, -4},
-//////     {4, 3, 1},
-//////     {5, 2, 2}}, 6);
-//	
-//// }
+
 }
