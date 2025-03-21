@@ -40,10 +40,31 @@ public class BellmanFordTest {
     
     // Méthode pour initialiser les tests avec des résultats attendus
     public static void initTest() {
-        checkTest.put(0, new ArrayList<>(Arrays.asList(-1)));
+    	checkTest.put(0, new ArrayList<>(Arrays.asList(0, 1, 3, 5, 0, 3)));
         checkTest.put(1, new ArrayList<>(Arrays.asList(0, 5, 6, 6, 7)));
         checkTest.put(2, new ArrayList<>(Arrays.asList(0, 2, -1, 0, -4)));
-        checkTest.put(3, new ArrayList<>(Arrays.asList(0, 1, 3, 5, 0, 3)));
+       
+        checkTest.put(5, new ArrayList<>(Arrays.asList(0, 7, 3, 9, 5))); 
+        
+        
+        //graphes orienté cycle negatifs
+        checkTest.put(3, new ArrayList<>(Arrays.asList(-1)));
+        checkTest.put(4, new ArrayList<>(Arrays.asList(-1))); 
+        
+        // graphes poids nul
+        checkTest.put(6, new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0))); 
+        
+        //graphe non connexe
+        checkTest.put(7, new ArrayList<>(Arrays.asList(0, 2, 5, 100000000, 100000000))); 
+        
+        //graphe non orienté avec cycle neg
+        
+        //graphe orienté sans cycle neg
+        
+
+        
+        
+        
     }
     
     // Méthode pour exécuter un test individuel
@@ -113,14 +134,14 @@ public class BellmanFordTest {
         initTest();
         
         // Exécution de tous les tests (ici 4 tests)
-//        Tuple testPassedRatio = runAllTests(4);
+        Tuple testPassedRatio = runAllTests(8);
         
         // Affichage des résultats
-//        System.out.println("\nNombre de Tests effectués : " + testPassedRatio.getSnd());
-//        System.out.println("Nombre de Tests réussis : " + testPassedRatio.getFst());
-//        System.out.println("Nombre de Tests échouées : " + (testPassedRatio.getSnd() - testPassedRatio.getFst()));
-//        System.out.println("Taux de réussite des Tests : " + (testPassedRatio.getFst() / (float) testPassedRatio.getSnd()) * 100 + " %");
+        System.out.println("\nNombre de Tests effectués : " + testPassedRatio.getSnd());
+        System.out.println("Nombre de Tests réussis : " + testPassedRatio.getFst());
+        System.out.println("Nombre de Tests échouées : " + (testPassedRatio.getSnd() - testPassedRatio.getFst()));
+        System.out.println("Taux de réussite des Tests : " + (testPassedRatio.getFst() / (float) testPassedRatio.getSnd()) * 100 + " %");
         
-        runSingleTest(3); 
+//        runSingleTest(0); 
     }
 }
